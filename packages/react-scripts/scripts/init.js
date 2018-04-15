@@ -128,6 +128,12 @@ module.exports = function(
       console.error(`\`${command} ${args.join(' ')}\` failed`);
       return;
     }
+    // additional dev dependencies
+    const proc2 = spawn.sync(command, ['flow-bin'], { stdio: 'inherit' });
+    if (proc.status !== 0) {
+      console.error(`\`${command} ${args.join(' ')}\` failed`);
+      return;
+    }
   }
 
   // Display the most elegant way to cd.
