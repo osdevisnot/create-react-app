@@ -32,6 +32,7 @@ module.exports = function(
   const appPackage = require(path.join(appPath, 'package.json'));
   const useYarn = fs.existsSync(path.join(appPath, 'yarn.lock'));
 
+  appPackage.name = '@elliemae/' + appPackage.name; // override default name
   // Copy over some of the devDependencies
   appPackage.dependencies = appPackage.dependencies || {};
 
@@ -40,7 +41,6 @@ module.exports = function(
     start: 'react-scripts start',
     build: 'react-scripts build',
     test: 'react-scripts test --env=jsdom',
-    eject: 'react-scripts eject',
   };
 
   fs.writeFileSync(
